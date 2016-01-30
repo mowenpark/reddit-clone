@@ -2,34 +2,37 @@ class PostsController < ApplicationController
   before_action :is_author?, only: [:edit, :update]
 
   def show
+    @post = Post.find_by_id(params[:id])
     render :show
   end
 
   def new
+    @post = Post.new
     render :new
   end
 
   def edit
+    @post = Post.find_by_id(params[:id])
     render :edit
   end
 
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to post_url(@post)
+      redirect_to sub_post_url(@post.sub, @post)
     else
       flash.now[:errors] = @post.errors.full_messages
-      redirect_to :new
+      render :new
     end
   end
 
   def update
     @post = Post.find_by_id(params[:id])
     if @post.update_attributes(post_params)
-      redirect_to post_url(@post)
+      redirect_to sub_post_url(@post.sub, @post)
     else
       flash.now[:errors] = @post.errors.full_messages
-      redirect_to :edit
+      render :edit
     end
   end
 
@@ -39,7 +42,7 @@ class PostsController < ApplicationController
       redirect_to sub_url(Sub.find_by_id(@post.sub_id))
     else
       flash.now[:errors] = @post.errors.full_messages
-      redirect_to :new
+      render :show
     end
   end
 

@@ -1,7 +1,6 @@
 <% url = sub.persisted? ? sub_url(sub) : subs_url %>
 <% method = sub.persisted? ? "PATCH" : "POST" %>
 <% button_text = sub.persisted? ? "Update" : "Create" %>
-
 <form action="<%= url %>" method="POST">
   <input type="hidden" name="_method" value="<%= method %>">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">

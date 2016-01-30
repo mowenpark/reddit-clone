@@ -1,0 +1,13 @@
+<% @post = Post.find_by_id(params[:id]) %>
+<h2><a href="<%= @post.url %>"><%= @post.title %></a></h2>
+<br>
+<p><%= @post.content %></p>
+<br>
+<br>
+<%= button_to "Edit post", edit_sub_post_url(@post.sub, @post), method: :get %>
+<br>
+<%= button_to "Sub", sub_url(Sub.find_by_id(@post.sub_id)), method: :get %>
+<br>
+<%= button_to "Author", user_url(User.find_by_id(@post.author_id)), method: :get %>
+<br>
+<%= button_to "Delete post", sub_post_url(@post.sub, @post), method: :delete %>

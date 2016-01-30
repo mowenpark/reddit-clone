@@ -3,10 +3,10 @@
 <br>
 
 <% @sub.posts.each do |post| %>
-  <li><a href="<%= post_url(post) %>"><%= post.title %></a></li>
+  <li><a href="<%= sub_post_url(post.sub, post) %>"><%= post.title %></a></li>
 <% end %>
 
-<%= button_to "Add post", new_post_url, method: :get %>
+<%= button_to "Add post", new_sub_post_url(@sub), method: :get %>
 <br>
 <%= button_to "Edit sub", edit_sub_url(@sub), method: :get %>
 <br>

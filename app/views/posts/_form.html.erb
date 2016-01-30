@@ -1,0 +1,23 @@
+<% url = post.persisted? ? sub_post_url(post.sub, post) : sub_posts_url %>
+<% method = post.persisted? ? "PATCH" : "POST" %>
+<% button_text = post.persisted? ? "Update" : "Create" %>
+<%= flash.now[:errors] %>
+<form action="<%= url %>" method="POST">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="post[author_id]" value="<%= current_user.id %>">
+  <input type="hidden" name="post[sub_id]" value="<%= params[:sub_id] %>">
+  <label>Title
+  <input type="text" name="post[title]" value="<%= post.title %>">
+  </label>
+  <br>
+  <label>URL
+  <input type="text" name="post[url]" value="<%= post.url %>">
+  </label>
+  <br>
+  <label>Content
+  <input type="textarea" name="post[content]" value="<%= post.content %>">
+  </label>
+  <br>
+  <input type="submit" value="<%= button_text %>">
+</form>
