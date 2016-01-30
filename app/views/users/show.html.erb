@@ -1,0 +1,18 @@
+<% @user = User.find_by_id(params[:id]) %>
+<h2> <%= @user.name %></h2>
+
+<h3>Moderated Subs</h3>
+<ul>
+<% @user.subs.each do |sub| %>
+  <li><a href="<%= sub_url(sub) %>"><%= sub.title %></a></li>
+<% end %>
+</ul>
+<br>
+<%= button_to "Create sub", new_sub_url, method: :get %>
+
+<h3>Authored Posts</h3>
+<ul>
+<% @user.posts.each do |post| %>
+  <li><a href="<%= post_url(post) %>"><%= post.title %></a></li>
+<% end %>
+</ul>

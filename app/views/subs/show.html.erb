@@ -1,0 +1,13 @@
+<% @sub = Sub.find_by_id(params[:id]) %>
+<h2><%= @sub.title %></h2>
+<br>
+
+<% @sub.posts.each do |post| %>
+  <li><a href="<%= post_url(post) %>"><%= post.title %></a></li>
+<% end %>
+
+<%= button_to "Add post", new_post_url, method: :get %>
+<br>
+<%= button_to "Edit sub", edit_sub_url(@sub), method: :get %>
+<br>
+<%= button_to "Moderator", user_url(User.find_by_id(@sub.moderator_id)), method: :get %>

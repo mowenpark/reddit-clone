@@ -6,6 +6,7 @@ class SubsController < ApplicationController
   end
 
   def new
+    @sub = Sub.new
     render :new
   end
 
@@ -20,6 +21,7 @@ class SubsController < ApplicationController
   end
 
   def edit
+    @sub = Sub.find_by_id(params[:id])
     render :edit
   end
 
